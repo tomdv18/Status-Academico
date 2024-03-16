@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang='es'>
+<head>
+    <title>¿Ya estoy recibido?</title>
+    <meta charset="utf-8">
+    <meta content="width=device-width, initial-scale=1" name="viewport">
+    <style>
+    body {
+        text-align: center ;
+        padding: 2.5rem;
+        margin: 0 auto;
+        position: relative;
+    }
+    .center-top { /* Clase agregada para la imagen */
+        position: relative;
+        width: 75px; 
+        margin-top: 0.5rem;
+        margin-bottom: 1.5rem;
+        text-align: top;
+    }
+    </style>
+</head>
+
+<body>
+<img class="center-top" src="resources\Boca_escudo.png" alt="boquita">
+<h1>
+<span style="font-size: 4rem;">¿Ya estoy recibido?</span></h1>
+<h3 id='answer' style='color:red; font-size: 2rem;'>No</h3>
+<button align-self="center"; type="button"; onclick=reload();>¿Ahora?</button>
+
+
+<script>
+function getAnswer() {
+    let answers = ["Segui estudiando pibe", "No te recibiste pero boquita sigue siendo el mas grande","Faltan créditos todavia", "No quiero perder el boleto universitario","!(yes)", "Nop", "Uf, casi", "Not", "En absoluto", "Aprendiste ingles?", "Nou", "Que lindo día, no?", "No, todavía estoy perfeccionando mi técnica de procrastinación."]
+    return answers[Math.floor(Math.random()*answers.length)];
+}
+
+function reload() {
+    let btn = document.getElementById('answer')
+    btn.innerHTML = `
+    <div class="hollow-dots-spinner" :style="spinnerStyle">
+        <div class="dot"></div>
+        <div class="dot"></div>
+        <div class="dot"></div>
+    </div>`
+    setTimeout(function () { btn.innerHTML = getAnswer();}, 2000);
+}
+</script>
+
+<style>
+    .hollow-dots-spinner, .hollow-dots-spinner * {
+      margin: 0 auto;
+      box-sizing: border-box;
+    }
+
+    .hollow-dots-spinner {
+      height: 15px;
+      width: calc(30px * 3);
+    }
+
+    .hollow-dots-spinner .dot {
+      width: 15px;
+      height: 15px;
+      margin: 0 calc(15px / 2);
+      border: calc(15px / 5) solid #2c1dff;
+      border-radius: 50%;
+      float: left;
+      transform: scale(0);
+      animation: hollow-dots-spinner-animation 1000ms ease infinite 0ms;
+    }
+
+    .hollow-dots-spinner .dot:nth-child(1) {
+      animation-delay: calc(300ms * 1);
+    }
+
+    .hollow-dots-spinner .dot:nth-child(2) {
+      animation-delay: calc(300ms * 2);
+    }
+
+    .hollow-dots-spinner .dot:nth-child(3) {
+      animation-delay: calc(300ms * 3);
+
+    }
+    button {
+
+        padding: 1rem;
+        font-size: 1.5rem;
+        color: #ffffff;
+        font-weight: bold;
+        background-color: #2c1dff;
+    }
+
+
+    @keyframes hollow-dots-spinner-animation {
+      50% {
+        transform: scale(1);
+        opacity: 1;
+      }
+      100% {
+        opacity: 0;
+      }
+    }
+</style>
+</body>
